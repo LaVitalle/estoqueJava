@@ -8,8 +8,8 @@ public class KnapsackTest {
     public static void main(String[] args) {
 
         // Configurações de capacidade e quantidade de itens
-        Double capacity = 150.0;
-        int numberOfItems = 10000;
+        Double capacity = 50.0;
+        int numberOfItems = 50000;
 
         // Gerar itens aleatórios com valores decimais
         List<Item> items = generateRandomItems(numberOfItems, 5, 50.0, 0.5, 300.0);
@@ -38,7 +38,7 @@ public class KnapsackTest {
         // Exibir os resultados
         System.out.println("Itens selecionados para a mochila:");
         for (Item item : bestState.selectedItems) {
-            System.out.printf("Peso: %.2f, Valor: %.2f%n", item.getWeight(), item.getValue());
+            System.out.printf("Id:%s, Peso: %.2f, Valor: %.2f%n", item.getId().toString(), item.getWeight(), item.getValue());
         }
         System.out.printf("Peso total: %.2f%n", bestState.getTotalWeight());
         System.out.printf("Valor total: %.2f%n", bestState.getTotalValue());
@@ -52,9 +52,10 @@ public class KnapsackTest {
         Random random = new Random();
 
         for (int i = 0; i < count; i++) {
+
             double weight = minWeight + (maxWeight - minWeight) * random.nextDouble();
             double value = minValue + (maxValue - minValue) * random.nextDouble();
-            items.add(new Item(weight, value));
+            items.add(new Item(i+1, weight, value));
         }
 
         return items;
