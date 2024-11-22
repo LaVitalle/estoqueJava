@@ -3,18 +3,18 @@ package br.com.bpkedu.knapsack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Knapsack {
-    private double capacity;
+public class Estoque {
+    private double area;
     private List<Item> items;
 
 
-    public Knapsack(int capacity) {
-        this.capacity = capacity;
+    public Estoque(int capacity) {
+        this.area = capacity;
         this.items = new ArrayList<>();
     }
 
-    public Knapsack(double capacity, List<Item> itens) {
-        this.capacity = capacity;
+    public Estoque(double capacity, List<Item> itens) {
+        this.area = capacity;
         this.items = itens;
     }
 
@@ -27,6 +27,6 @@ public class Knapsack {
     }
 
     public double getCapacity() {
-        return capacity;
+        return area;
     }
 }
