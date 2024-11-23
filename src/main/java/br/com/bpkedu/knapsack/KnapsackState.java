@@ -5,78 +5,46 @@ import br.com.bpkedu.knapsack.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A classe KnapsackState representa um estado de seleção de itens no problema da mochila.
- * Cada estado armazena os itens selecionados, bem como o peso total e o valor total desses itens.
- * Esta classe é usada pelo algoritmo A* para avaliar diferentes combinações de itens e encontrar a solução ótima.
- */
 public class KnapsackState {
-    /**
-     * Lista de itens selecionados no estado atual.
-     */
-    protected final List<Item> selectedItems;
 
-    /**
-     * Peso total dos itens selecionados no estado atual.
-     */
-    protected double totalWeight;
+    protected final List<Produto> selectedProdutos;
 
-    /**
-     * Valor total dos itens selecionados no estado atual.
-     */
-    protected double totalValue;
+    protected double totalArea;
 
-    /**
-     * Construtor padrão que inicializa o estado com uma lista vazia de itens,
-     * e define o peso e valor total como 0.
-     */
+    protected double totalValor;
+
     public KnapsackState() {
-        this.selectedItems = new ArrayList<>();
-        this.totalWeight = 0.0;
-        this.totalValue = 0.0;
+        this.selectedProdutos = new ArrayList<>();
+        this.totalArea = 0.0;
+        this.totalValor = 0.0;
     }
 
     /**
      * Construtor que inicializa o estado com uma lista específica de itens.
      * Calcula automaticamente o peso total e o valor total com base nos itens fornecidos.
      *
-     * @param selectedItems A lista de itens a ser usada para inicializar o estado.
+     * @param selectedProdutos A lista de itens a ser usada para inicializar o estado.
      */
-    public KnapsackState(List<Item> selectedItems) {
-        this.selectedItems = new ArrayList<>(selectedItems);
-        for (Item item : selectedItems) {
-            this.totalWeight += item.getWeight();
-            this.totalValue += item.getValue();
+    public KnapsackState(List<Produto> selectedProjeto) {
+        this.selectedProdutos = new ArrayList<>(selectedProdutos);
+        for (Produto produto : selectedProdutos) {
+            this.totalArea += produto.getArea();
+            this.totalValor += produto.getValor();
         }
     }
 
-    /**
-     * Adiciona um item ao estado atual, atualizando o peso e o valor total.
-     *
-     * @param item O item a ser adicionado.
-     */
-    public void addItem(Item item) {
-        selectedItems.add(item);
-        totalWeight += item.getWeight();
-        totalValue += item.getValue();
+    public void addProduto(Produto produto) {
+        selectedProdutos.add(produto);
+        totalArea += produto.getArea();
+        totalValor += produto.getValor();
     }
 
-    /**
-     * Retorna o peso total dos itens selecionados no estado atual.
-     *
-     * @return O peso total dos itens selecionados.
-     */
-    public double getTotalWeight() {
-        return totalWeight;
+    public double getTotalArea() {
+        return totalArea;
     }
 
-    /**
-     * Retorna o valor total dos itens selecionados no estado atual.
-     *
-     * @return O valor total dos itens selecionados.
-     */
-    public double getTotalValue() {
-        return totalValue;
+    public double getTotalValor() {
+        return totalValor;
     }
 
     /**
@@ -89,14 +57,14 @@ public class KnapsackState {
      * @return A heurística para o estado atual (diferença entre capacidade e peso total).
      */
     public double heuristic(double capacity) {
-        return capacity - totalWeight;
+        return capacity - totalArea;
     }
 
     @Override
     public String toString() {
         return "KnapsackState{" +
-                "totalWeight=" + totalWeight +
-                ", totalValue=" + totalValue +
+                "totalArea=" + totalArea +
+                ", totalValor=" + totalValor +
                 '}';
     }
 }

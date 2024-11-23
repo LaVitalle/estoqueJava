@@ -5,25 +5,25 @@ import java.util.List;
 
 public class Knapsack {
     private double capacity;
-    private List<Item> items;
+    private List<Produto> produtos;
 
 
     public Knapsack(int capacity) {
         this.capacity = capacity;
-        this.items = new ArrayList<>();
+        this.produtos = new ArrayList<>();
     }
 
-    public Knapsack(double capacity, List<Item> itens) {
+    public Knapsack(double capacity, List<Produto> produtos) {
         this.capacity = capacity;
-        this.items = itens;
+        this.produtos = produtos;
     }
 
-    public void addItem(Item item){
-        this.items.add(item);
+    public void addProduto(Produto produto){
+        this.produtos.add(produto);
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<Produto> getProduto() {
+        return produtos;
     }
 
     public double getCapacity() {

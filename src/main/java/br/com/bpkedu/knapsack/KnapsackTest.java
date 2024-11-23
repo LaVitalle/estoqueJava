@@ -12,7 +12,7 @@ public class KnapsackTest {
         int numberOfItems = 50000;
 
         // Gerar itens aleatórios com valores decimais
-        List<Item> items = generateRandomItems(numberOfItems, 5, 50.0, 0.5, 300.0);
+        List<Produto> produto = generateRandomProduto(numberOfItems, 5, 50.0, 0.5, 300.0);
 
 
 //        List<Item> items = new ArrayList<>();
@@ -25,11 +25,11 @@ public class KnapsackTest {
 
 
 
-        items.forEach(item -> System.out.println(item));
+        produto.forEach(item -> System.out.println(produto));
 
 
         // Criar uma mochila com a capacidade definida e a lista de itens gerados
-        Knapsack knapsack = new Knapsack(capacity, items);
+        Knapsack knapsack = new Knapsack(capacity, produto);
 
         // Resolver o problema da mochila com o solver
         KnapsackSolverBacktracking solver = new KnapsackSolverBacktracking();
@@ -37,25 +37,25 @@ public class KnapsackTest {
 
         // Exibir os resultados
         System.out.println("Itens selecionados para a mochila:");
-        for (Item item : bestState.selectedItems) {
-            System.out.printf("Id:%s, Peso: %.2f, Valor: %.2f%n", item.getId().toString(), item.getWeight(), item.getValue());
+        for (Produto item : bestState.selectedProdutos) {
+            System.out.printf("Id:%s, Peso: %.2f, Valor: %.2f%n", item.getId().toString(), item.getArea(), item.getValor());
         }
-        System.out.printf("Peso total: %.2f%n", bestState.getTotalWeight());
-        System.out.printf("Valor total: %.2f%n", bestState.getTotalValue());
+        System.out.printf("Peso total: %.2f%n", bestState.getTotalArea());
+        System.out.printf("Valor total: %.2f%n", bestState.getTotalValor());
 
 
     }
 
     // Função para gerar itens aleatórios com valores decimais
-    private static List<Item> generateRandomItems(int count, double minWeight, double maxWeight, double minValue, double maxValue) {
-        List<Item> items = new ArrayList<>();
+    private static List<Produto> generateRandomItems(int count, double minArea, double maxArea, double minValor, double maxValor) {
+        List<Produto> items = new ArrayList<>();
         Random random = new Random();
 
         for (int i = 0; i < count; i++) {
 
-            double weight = minWeight + (maxWeight - minWeight) * random.nextDouble();
-            double value = minValue + (maxValue - minValue) * random.nextDouble();
-            items.add(new Item(i+1, weight, value));
+            double area = minArea + (maxArea - minArea) * random.nextDouble();
+            double valor = minValor + (maxValor - minValor) * random.nextDouble();
+            items.add(new Produto(i+1, area, valor));
         }
 
         return items;
