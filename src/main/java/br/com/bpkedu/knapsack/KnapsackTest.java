@@ -27,15 +27,11 @@ public class KnapsackTest {
 
         produto.forEach(item -> System.out.println(produto));
 
+        Estoque knapsack = new Estoque(capacity, produto);
 
-        // Criar uma mochila com a capacidade definida e a lista de itens gerados
-        Knapsack knapsack = new Knapsack(capacity, produto);
+        SolucaoEstoque solver = new SolucaoEstoque();
+        EstoqueStatus bestState = solver.solve(knapsack);
 
-        // Resolver o problema da mochila com o solver
-        KnapsackSolverBacktracking solver = new KnapsackSolverBacktracking();
-        KnapsackState bestState = solver.solve(knapsack);
-
-        // Exibir os resultados
         System.out.println("Itens selecionados para a mochila:");
         for (Produto item : bestState.selectedProdutos) {
             System.out.printf("Id:%s, Peso: %.2f, Valor: %.2f%n", item.getId().toString(), item.getArea(), item.getValor());
@@ -45,10 +41,10 @@ public class KnapsackTest {
 
 
     }
-
     // Função para gerar itens aleatórios com valores decimais
     private static List<Produto> generateRandomItems(int count, double minArea, double maxArea, double minValor, double maxValor) {
         List<Produto> items = new ArrayList<>();
+
         Random random = new Random();
 
         for (int i = 0; i < count; i++) {
